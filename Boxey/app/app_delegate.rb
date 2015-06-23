@@ -15,14 +15,39 @@ class AppDelegate
     @window.addSubview(@blue_view)
     
     @add_button = UIButton.buttonWithType(UIButtonTypeSystem)
-    @add_button.setTitle("UIButtonTypeSystem", forState: UIControlStateNormal)
+    @add_button.setTitle("Tap", forState: UIControlStateNormal)
     @add_button.layer.cornerRadius = 5
     @add_button.backgroundColor = UIColor.whiteColor
     @add_button.sizeToFit
     @add_button.frame = CGRect.new([10, @window.frame.size.height - 10 - @add_button.frame.size.height],
                                    @add_button.frame.size)
     @window.addSubview(@add_button)
+    @add_button.addTarget(self, action:"add_tapped", forControlEvents:UIControlEventTouchUpInside)
 
     true
   end
+
+  def add_tapped
+    new_view = UIView.alloc.initWithFrame(CGRect.new([15, 75], [100, 100]))
+    new_view.backgroundColor = UIColor.greenColor
+
+    last_view = @window.subviews[1]
+
+    new_view.frame = CGRect.new([last_view.frame.origin.x, last_view.frame.origin.y + last_view.frame.size.height + 10], [100, 100])
+    @window.addSubview(new_view)
+  end
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
