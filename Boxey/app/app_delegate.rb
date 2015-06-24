@@ -8,7 +8,6 @@ class AppDelegate
 
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
     @window.rootViewController = navigationController
-    @window.makeKeyAndVisible
 
     @blue_view = UIView.alloc.initWithFrame(CGRect.new([10, 70], [100, 100]))
     @blue_view.backgroundColor = UIColor.blueColor
@@ -34,6 +33,7 @@ class AppDelegate
     @window.addSubview(@remove_button)
     @remove_button.addTarget(self, action:"remove_tapped", forControlEvents:UIControlEventTouchUpInside)
 
+    @window.makeKeyAndVisible
     true
   end
 
