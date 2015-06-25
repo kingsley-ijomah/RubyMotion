@@ -49,6 +49,12 @@ class ColorsController < UIViewController
     controller = ColorDetailController.alloc.initWithColor(UIColor.blueColor)
     self.navigationController.pushViewController(controller, animated: true)
   end
+
+  def initWithNibName(name, bundle: bundle) 
+    super
+    self.tabBarItem = UITabBarItem.alloc.initWithTitle("Colors", image: nil, tag: 1)
+    self
+  end
 end
 
 
