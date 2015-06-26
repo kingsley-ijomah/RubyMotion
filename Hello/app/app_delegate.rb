@@ -1,8 +1,13 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    alert = UIAlertView.new
-    alert.message = "Hello World!"
-    alert.show
+
+    UIAlertView.alloc.initWithTitle("Title Here..",
+                                    message: "Hello World",
+                                    delegate: nil,
+                                    cancelButtonTitle: "OK",
+                                    otherButtonTitles: nil
+                                   ).show
+
     true
   end
 end
