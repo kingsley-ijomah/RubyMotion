@@ -1,15 +1,11 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    rootViewController = UIViewController.alloc.init
-    rootViewController.title = 'UILabel'
-    rootViewController.view.backgroundColor = UIColor.whiteColor
-
-    navigationController = UINavigationController.alloc.initWithRootViewController(rootViewController)
+    test_controller = TestController.alloc.init
+    nav_controller = UINavigationController.alloc.initWithRootViewController(test_controller)
 
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-    @window.rootViewController = navigationController
     @window.makeKeyAndVisible
-
+    @window.rootViewController = nav_controller
     true
   end
 end
