@@ -9,7 +9,6 @@ class UserController < UIViewController
   end
 
   def viewDidLoad
-    unobserve_all
     super
 
     self.view.backgroundColor = UIColor.whiteColor
@@ -51,6 +50,11 @@ class UserController < UIViewController
     observe(self.user, "name") do |old_value, new_value|
       self.title = new_value
     end
+  end
+
+  def vidDidUnload
+    super
+    unobserve_all
   end
 end
 
