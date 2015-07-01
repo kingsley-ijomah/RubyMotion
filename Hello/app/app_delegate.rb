@@ -1,13 +1,15 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
 
-    UIAlertView.alloc.initWithTitle("Title Here..",
-                                    message: "Hello World",
-                                    delegate: nil,
-                                    cancelButtonTitle: "OK",
-                                    otherButtonTitles: nil
-                                   ).show
+    alert = UIAlertView.alloc.initWithTitle("RubyMotion", message: "RubyMotion is awesome!", delegate: self,
+                                            cancelButtonTitle: "OK",
+                                            otherButtonTitles: nil)
+    alert.show
 
     true
+  end
+
+  def alertView(alertView, clickedButtonAtIndex: indexPath)
+    puts 'clicked button'
   end
 end
