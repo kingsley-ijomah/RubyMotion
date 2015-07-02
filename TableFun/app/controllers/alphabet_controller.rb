@@ -66,8 +66,16 @@ class AlphabetController < UIViewController
     self.sections.count
   end
 
-  def tableView(tableView, titleForHeaderInSection:section) 
+  def tableView(tableView, titleForHeaderInSection: section) 
     sections[section]
+  end
+
+  def sectionIndexTitlesForTableView(tableView) 
+    sections
+  end
+
+  def tableView(tableView, sectionForSectionIndexTitle: title, atIndex: index)
+      sections.index title
   end
 end
 
