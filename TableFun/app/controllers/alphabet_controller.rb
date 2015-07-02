@@ -34,7 +34,7 @@ class AlphabetController < UIViewController
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
     @reuseIdentifier ||= "CELL_IDENTIFIER"
     cell = tableView.dequeueReusableCellWithIdentifier(@reuseIdentifier) || begin
-      UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:@reuseIdentifier)
+    UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:@reuseIdentifier)
     end
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator
     cell.textLabel.text = row_for_index_path(indexPath)
@@ -61,7 +61,7 @@ class AlphabetController < UIViewController
     controller.view.addSubview(label)
     self.navigationController.pushViewController(controller, animated:true)
   end
-  
+
   def numberOfSectionsInTableView(tableView) 
     self.sections.count
   end
@@ -75,8 +75,21 @@ class AlphabetController < UIViewController
   end
 
   def tableView(tableView, sectionForSectionIndexTitle: title, atIndex: index)
-      sections.index title
+    sections.index title
   end
+
+  def tableView(tableView, editingStyleForRowAtIndexPath: indexPath) 
+    UITableViewCellEditingStyleDelete
+  end
+
+  def tableView(tableView, commitEditingStyle:editingStyle, forRowAtIndexPath:indexPath) 
+    if editingStyle == UITableViewCellEditingStyleDelete
+      rows_for_section(indexPath.section).delete_at indexPath.row
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:UITableViewRowAnimationFade)
+    end 
+  end
+
+
 end
 
 
