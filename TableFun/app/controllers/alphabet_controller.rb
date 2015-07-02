@@ -2,7 +2,7 @@ class AlphabetController < UIViewController
   def viewDidLoad
     super
     self.title = 'Alphabet'
-    @table = UITableView.alloc.initWithFrame(self.view.bounds) 
+    @table = UITableView.alloc.initWithFrame(self.view.bounds, style: UITableViewStyleGrouped) 
     @table.autoresizingMask = UIViewAutoresizingFlexibleHeight 
     @table.dataSource = self #implements tableView
     @table.delegate = self #handles what to do after interacting with table
