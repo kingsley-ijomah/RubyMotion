@@ -45,6 +45,21 @@ class ColorController < UIViewController
       [self.view.frame.size.width - @add.frame.size.width - padding, @color_view.frame.origin.y],
       [@add.frame.size.width, @color_view.frame.size.height]]
     self.view.addSubview(@add)
+
+    @add.when(UIControlEventTouchUpInside) do 
+      @add.enabled = false
+      @text_field.enabled = false 
+      self.color.add_tag(@text_field.text) do |tag|
+        if tag 
+          refresh
+        else
+          @add.enabled = true 
+          @text_field.enabled = true 
+          @text_field.text = "Failed :("
+        end 
+      end
+    end
+
     add_button_offset = @add.frame.size.width + 2*padding
 
     @text_field.frame = [
@@ -60,7 +75,7 @@ class ColorController < UIViewController
     @table_view.autoresizingMask = UIViewAutoresizingFlexibleHeight
     self.view.addSubview(@table_view)
     @table_view.dataSource = self
-  end  
+    end  
 
   def tableView(tableView, numberOfRowsInSection:section) 
     self.color.tags.count
@@ -73,6 +88,15 @@ class ColorController < UIViewController
       UITableViewCellStyleDefault, reuseIdentifier:@reuseIdentifier)
     cell.textLabel.text = self.color.tags[indexPath.row].name
     cell
+  end
+
+  def refresh
+    Color.find(self.color.hex) do |color|
+      self.color = color
+      @table_view.reloadData
+      @add.enabled = true
+      @text_field.enabled = true
+    end 
   end
 end
 
