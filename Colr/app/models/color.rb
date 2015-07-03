@@ -27,23 +27,30 @@ class Color
   end
 
   def self.find(hex, &block) 
-    BW::HTTP.get("https://kingsley-ijomah-color-api-v1.p.mashape.com/#{hex}", 
+    BW::HTTP.get("https://kingsley-ijomah-colr-api-v1.p.mashape.com/#{hex}", 
                  headers: {"X-Mashape-Key" => "zm9YKYkLWRmshsicq4vZPy7GhPS9p1zjCOGjsn8sLUHefDzLqr"}
                 ) do |response|
-        result_data = BubbleWrap::JSON.parse(response.body.to_str)
-        color_data = result_data["colors"][0]
-        color = Color.new(color_data)
-        if color.id.to_i == -1
-          block.call(nil)
-        else
-          block.call(color)
-        end
+                  result_data = BubbleWrap::JSON.parse(response.body.to_str)
+                  color_data = result_data["colors"][0]
+                  color = Color.new(color_data)
+                  if color.id.to_i == -1
+                    block.call(nil)
+                  else
+                    block.call(color)
+                  end
+                end 
+  end
+
+  def add_tag(tag, &block) 
+    BubbleWrap::HTTP.post("http://www.colr.org/js/color/#{self.hex}/addtag/", payload:{tags: tag}) do |response| 
+      if response.ok?
+        block.call(tag)
+      else
+        block.call(nil)
       end 
-   end
+    end
+  end
+
 end
-
-
-
-
 
 
