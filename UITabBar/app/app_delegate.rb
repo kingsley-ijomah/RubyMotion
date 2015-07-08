@@ -1,13 +1,12 @@
 class AppDelegate
   def application(application, didFinishLaunchingWithOptions:launchOptions)
-    rootViewController = UIViewController.alloc.init
-    rootViewController.title = 'UITabBar'
-    rootViewController.view.backgroundColor = UIColor.whiteColor
-
-    navigationController = UINavigationController.alloc.initWithRootViewController(rootViewController)
-
     @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-    @window.rootViewController = navigationController
+    @window.backgroundColor = UIColor.whiteColor
+
+    tabBar = UITabBarController.alloc.init
+    tabBar.viewControllers = [BeerMapController.alloc.init, BeerListController.alloc.init]
+    
+    @window.rootViewController = UINavigationController.alloc.initWithRootViewController(tabBar)
     @window.makeKeyAndVisible
 
     true
