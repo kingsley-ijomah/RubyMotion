@@ -1,6 +1,7 @@
 class Todo
   include MotionModel::Model
   include MotionModel::ArrayModelAdapter
+  include MotionModel::Validatable
 
   columns name: :string, 
     details: :string, 
