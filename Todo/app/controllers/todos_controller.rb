@@ -25,4 +25,11 @@ class TodosController < UIViewController
     cell
   end
 
+  def tableView(tableView, didSelectRowAtIndexPath:indexPath)
+    tableView.deselectRowAtIndexPath(indexPath, animated:true)
+    todo = @todos[indexPath.row]
+    form_controller = FormController.new(todo)
+    self.navigationController.pushViewController(form_controller, animated: true)
+  end
+
 end
