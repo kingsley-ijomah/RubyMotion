@@ -15,12 +15,14 @@ class AppDelegate
   end
 
   def seed
-    now = NSDate.new
-    things = %w(Milk Orange\ Juice Apples Bananas Brocolli Carrots Beef Chicken Enchiladas Hot\ Dogs Butter Bread Pasta Rice)
-    things.each do |thing|
-      Todo.create name: "Buy #{thing}",
-        description: "We need #{thing}",
-        due_date: now
+    if Todo.all.empty?
+      now = NSDate.new
+      things = %w(Milk Orange\ Juice Apples Bananas Brocolli Carrots Beef Chicken Enchiladas Hot\ Dogs Butter Bread Pasta Rice)
+      things.each do |thing|
+        Todo.create name: "Buy #{thing}",
+          description: "We need #{thing}",
+          due_date: now
+      end
     end
   end
 end
