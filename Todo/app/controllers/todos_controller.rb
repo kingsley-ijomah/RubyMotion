@@ -28,7 +28,7 @@ class TodosController < UIViewController
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
     tableView.deselectRowAtIndexPath(indexPath, animated:true)
     todo = @todos[indexPath.row]
-    form_controller = FormController.new(todo)
+    form_controller = FormController.new(todo, @table)
     self.navigationController.pushViewController(form_controller, animated: true)
   end
 
