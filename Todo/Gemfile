@@ -4,4 +4,5 @@ gem 'rake'
 # Add your dependencies here:
 gem 'motion_model'
 gem 'formotion'
+gem 'bubble-wrap'
 
