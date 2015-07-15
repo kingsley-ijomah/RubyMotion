@@ -8,7 +8,11 @@ class MainController < UIViewController
 
     rmq.stylesheet = MainStylesheet
     init_nav
+
     rmq(self.view).apply_style :root_view
+    rmq.append(UIButton, :submit_button).on(:touch) do 
+      puts 'clicked button'
+    end
 
     # Create your UIViews here
     @hello_world_label = rmq.append!(UILabel, :hello_world)
