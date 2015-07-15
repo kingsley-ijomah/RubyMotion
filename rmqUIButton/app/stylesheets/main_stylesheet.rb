@@ -17,4 +17,10 @@ class MainStylesheet < ApplicationStylesheet
     st.text = 'Hello World'
   end
 
+  def submit_button(st)
+    st.frame = {l: 20, fr: 20, h: 30, centered: :vertical}
+    st.background_color = color.gray
+    st.color = color.white
+    st.text = "Submit"
+  end
 end
